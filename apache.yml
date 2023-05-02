@@ -9,4 +9,17 @@
      service: 
        name: httpd
        state: started
-       enabled: true   
+       enabled: true
+   - name: put html file on the server
+     copy:
+      src: index.html
+      dest: /var/www/html/
+   - name: change apache port 
+     lifeinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen'
+      line: 'Listen 8080'
+   - name: restart apache server
+     service:
+       name: httpd 
+       state: restarted       
