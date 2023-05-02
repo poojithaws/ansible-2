@@ -1,15 +1,15 @@
 - hosts: 172.31.19.63,172.31.19.88
-  become: true
+  become: True
   tasks:
    - name: install apache server
      yum:
       name: httpd
       state: present 
-   - name: state and enable
+   - name: start and enable
      service: 
        name: httpd
        state: started
-       enabled: true
+       enabled: True
    - name: put html file on the server
      copy:
       src: index.html
