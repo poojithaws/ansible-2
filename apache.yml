@@ -1,25 +1,25 @@
 - hosts: 172.31.19.63,172.31.19.88
   become: True
   tasks:
-   - name: install apache server
-     yum:
+   - name: Install apache server
+     yum: 
       name: httpd
-      state: present 
-   - name: start and enable
+      state: present
+   - name: start & enable
      service: 
-       name: httpd
-       state: started
-       enabled: True
+      name: httpd
+      state: started
+      enabled: True  
    - name: put html file on the server
      copy:
       src: index.html
       dest: /var/www/html/
    - name: change apache port 
-     lifeinfile:
+     lineinfile:
       path: /etc/httpd/conf/httpd.conf
-      regexp: '^Listen'
+      regexp: '^Listen' 
       line: 'Listen 8080'
    - name: restart apache server
-     service:
-       name: httpd 
-       state: restarted       
+     service: 
+      name: httpd 
+      state: restarted
