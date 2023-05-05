@@ -1,0 +1,14 @@
+
+- hosts: apache
+  become: true 
+  tasks: 
+   - name: install git on linux
+     yum:
+      name: git
+      state: present 
+     when: ansible_os_family == "redhat"
+   - name: install git on ubantu
+     apt:
+      name: git 
+      state: present 
+     when: ansible_os_family == "Debian"
